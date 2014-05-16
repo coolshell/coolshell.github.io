@@ -105,9 +105,7 @@ int copy_something(char *buf, int len)
 上面这个例子中，还是[1]处的if语句，看上去没有会问题，但是len是个signed int，而memcpy则需一个size_t的len，也就是一个unsigned 类型。于是，len会被提升为unsigned，此时，如果我们给len传一个负数，会通过了if的检查，但在memcpy里会被提升为一个正数，于是我们的mybuf就是overflow了。这个会导致mybuf缓冲区后面的数据被重写。
 
 ### 示例三：分配内存
-关于整数溢出导致堆溢出的很典型的例子是，OpenSSH Challenge-Response SKEY/BSD_AUTH 远程缓冲区溢出漏洞。下面这段有问题的代码摘自OpenSSH的代码中的auth2-chall.c中的input_userauth_info_response() 函数:
-
-
+关于整数溢出导致堆溢出的很典型的例子是，OpenSSH Challenge-Response SKEY/BSD_AUTH 远程缓冲区溢出漏洞。下面这段有问题的代码摘自OpenSSH的代码中的auth2-chall.c中的`input_userauth_info_response()` 函数:
 
 ~~~~{c}
 nresp = packet_get_int();
@@ -448,7 +446,7 @@ void func(signed int si_a, signed int si_b)
 
 <h3 id="">示例三：分配内存</h3>
 
-<p>关于整数溢出导致堆溢出的很典型的例子是，OpenSSH Challenge-Response SKEY/BSD<em>AUTH 远程缓冲区溢出漏洞。下面这段有问题的代码摘自OpenSSH的代码中的auth2-chall.c中的input</em>userauth<em>info</em>response() 函数:</p>
+<p>关于整数溢出导致堆溢出的很典型的例子是，OpenSSH Challenge-Response SKEY/BSD_AUTH 远程缓冲区溢出漏洞。下面这段有问题的代码摘自OpenSSH的代码中的auth2-chall.c中的<code>input_userauth_info_response()</code> 函数:</p>
 
 <pre class=" language-c"><code class=" language-c">nresp <span class="token operator">=</span> <span class="token function">packet_get_int<span class="token punctuation">(</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span class="token keyword">if</span> <span class="token punctuation">(</span>nresp &gt; <span class="token number">0</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
