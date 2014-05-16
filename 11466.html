@@ -40,6 +40,8 @@ unsigned char x = 0xff;
 printf("%d\n", ++x);
 
 ~~~~
+
+
 <!-- markdown end -->
 </div>
 <div class="entry" id="main">
@@ -52,12 +54,11 @@ printf("%d\n", ++x);
 
 <p>对于unsigned整型溢出，C的规范是有定义的——“溢出后的数会以2^(8*sizeof(type))作模运算”，也就是说，如果一个unsigned char（1字符，8bits）溢出了，会把溢出的值与256求模。例如：</p>
 
-<p>~~~~{c}</p>
+<pre class=" language-c"><code class=" language-c">
+<span class="token keyword">unsigned</span> <span class="token keyword">char</span> x <span class="token operator">=</span> <span class="token number">0xff</span><span class="token punctuation">;</span>
+<span class="token function">printf<span class="token punctuation">(</span></span><span class="token string">"%d\n"</span><span class="token punctuation">,</span> <span class="token operator">++</span>x<span class="token punctuation">)</span><span class="token punctuation">;</span>
 
-<p>unsigned char x = 0xff;
-printf("%d\n", ++x);</p>
-
-<p>~~~~</p>
+</code></pre>
 <!-- content end -->
 </div>
 <br>
